@@ -1,0 +1,23 @@
+comandos terminal:
+    pwd: me dice mi direccion actuak
+    cd: cambio de direccion, cd .. va para atras
+    ls: lista de directorios actual
+    mkdir: crea una carpeta/directorio
+    rm: borrar directorios o archivos (rm -r nombre_directorio) (r es recursivo)
+    touch: crear archivos
+    code . (abre todos los archivos de la carpeta dnd estoy en vscode)
+    sudo (super usuario, para instalar boludeces y eso)
+
+extensiones de vs code
+    ctrl+p abre el buscador:
+        -haskell.haskell
+        -justusadam.language-haskell
+
+comandos haskell: estando en el directorio adecuado
+    ghci (abre el interpretador de haskell)
+    :l nombre.hs (reconocer el archivo)
+    :r (resube los archivos que habia subido hasta el momento)
+    :q (salgo del ghci)
+    :t E (me da el tipado de E-pueden ser funciones)
+
+    _USAR LAS FUNCIONES DEL CAMPUS_

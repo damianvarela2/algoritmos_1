@@ -1,0 +1,739 @@
+<h1>Parcial - tema1</h1>
+<p>Nota: 8.0 / 10.0 (APROBADO)</p>
+<pre><code>puntaje ej1: 0.0
+puntaje ej2: 0.5
+puntaje ej3: 0.5
+puntaje ej4: 2
+puntaje ej5: 2
+puntaje ej6: 2
+puntaje ej7: 0.5
+puntaje ej8: 0.5
+</code></pre>
+<h2>Datos del alumno</h2>
+<p>Nombre: Damian Varela Gamarnik</p>
+<p>DNI: 47570011</p>
+<p>LU: 612/26</p>
+<p>Maquina: 22-04</p>
+<h2>Enunciado</h2>
+<!doctype html>
+<html>
+
+  <head>
+    <link rel="icon" href="data:,">
+    <link href="css/style.css" rel="stylesheet" />
+
+    <style>
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .conditions {
+        margin-left: 20px;
+    }
+</style>
+  </head>
+  <body style="width: 50%;margin: 1% auto;">
+
+    <div>
+
+      <h1> Parcial Haskell - Tema 1 - Turno mañana </h1>
+
+      <p>
+
+<h2> Importante </h2>
+Template de funciones a implementar <a href="#" onclick="forceDownload('/parcial/Template_t1.hs','SolucionT1.hs');">acá</a><br>
+Lista de funciones permitidas <a href="/static/haskell_permitidas.html">acá</a><br>
+Ejemplo de hunit <a href="#" onclick="forceDownload('/parcial/Test_template_t1.hs','Test_template_t1.hs');">acá</a>
+
+        <p>
+
+          <form name="form1" action="/submit_examen" method="post"
+            enctype="multipart/form-data" onsubmit="return validaciones(event)">
+            <hr style="width: 100%;">
+            <h2> Enunciado </h2>
+
+            <ol style="padding-left: 0; list-style: none;">
+              <p>
+                Resolver los siguientes ejercicios cuyas especificaciones en
+                lenguaje
+                semiformal figuran a continuación. Deben ser implementadas en
+                Haskell utilizando los tipos
+                requeridos y solamente las funciones que se ven en la materia
+                Introducción a la Programación / Algoritmos y Estructuras de
+                Datos I (FCEyN-UBA).
+              </p>
+
+              <li> <strong>Ejercicio 1 [2 puntos]</strong></li>
+
+              <p>problema ejercicio1 (<i>s</i>: seq&#10216;Z&#10217;, <i>n</i>:
+                Z) : seq&#10216;Z&#10217; {<br>
+                &nbsp; <strong>requiere:</strong> {existe un &iacute;ndice
+                <i>i</i> tal que 0 &le; i &lt; |<i>s</i>|-1 y
+                <i>s</i>[i]+<i>s</i>[i+1] = <i>n</i>} <br>
+                &nbsp; <strong>asegura:</strong> {|<i>res</i>| = |<i>s</i>| - 2}
+                <br>
+                &nbsp; <strong>asegura:</strong> {<i>res</i> es igual a <i>s</i>
+                sin <i>s</i>[j] ni <i>s</i>[j+1], donde j es una posici&oacute;n
+                v&aacute;lida de <i>s</i> tal que <i>s</i>[j] + <i>s</i>[j+1] =
+                <i>n</i>} <br>
+                }<br>
+              </p>
+
+              <hr
+                style="margin: 25px 0; border: none; border-top: 1px solid #ccc;">
+
+              <li> <strong>Ejercicio 2 [0,5 puntos]</strong></li>
+              <p>
+                Conteste marcando la opci&oacute;n correcta. <br />
+                <b>&iquest;Qu&eacute; nombre le pondr&iacute;as a la
+                  funci&oacute;n del ejercicio anterior?</b> <br>
+
+  <input type="radio" name="mchoice_1" id="opcion1" value="1" />
+      <label for="opcion1">SacarTodosLosParesConsecutivosQueSumanN</label> <br>
+  <input type="radio" name="mchoice_1" id="opcion2" value="2" />
+      <label for="opcion2">SacarAlgunParConsecutivoQueSumaN</label> <br>
+  <input type="radio" name="mchoice_1" id="opcion3" value="3" />
+      <label for="opcion3">SacarPrimerParConsecutivoQueSumaN</label> <br>
+  <input type="radio" name="mchoice_1" id="opcion4" value="4" />
+      <label for="opcion4">Ninguna de las opciones anteriores describe adecuadamente el problema</label> <br>
+  </p>
+
+              <hr
+                style="margin: 25px 0; border: none; border-top: 1px solid #ccc;">
+
+              <li> <strong>Ejercicio 3 [0,5 puntos]</strong></li>
+              <p>
+                Conteste marcando la opci&oacute;n correcta, teniendo el cuenta
+                el problema <code>ejercicio1</code> <br>
+                <b>Si <code> s = [-3, 0, -1, 4, -2] </code> y <code> n = -3
+                  </code>, entonces:</b> <br>
+
+                <input type="radio" name="mchoice_2" id="opcion1_2" value="1" />
+                <label for="opcion1_2"><code> res1 = [-1, 4, -2] </code> es una
+                  salida válida</label> <br>
+                <input type="radio" name="mchoice_2" id="opcion2_2" value="2" />
+                <label for="opcion2_2"><code> res2 = [-2] </code> es una salida
+                  válida</label> <br>
+                <input type="radio" name="mchoice_2" id="opcion3_2" value="3" />
+                <label for="opcion3_2">No es posible ejecutar la función con un
+                  valor negativo para <i> n </i></label> <br>
+                <input type="radio" name="mchoice_2" id="opcion4_2" value="4" />
+                <label for="opcion4_2">No hay problema con ejecutar la función
+                  para un valor negativo de <i> n </i>, pero res1 y res2 no son
+                  soluciones válidas de acuerdo a la especificación </label>
+                <br>
+              </p>
+
+              <hr
+                style="margin: 25px 0; border: none; border-top: 1px solid #ccc;">
+
+              <li> <strong>Ejercicio 4 [2 puntos]</strong></li>
+
+              <p>Un n&uacute;mero entero positivo es
+                <strong>refactorizable</strong> si es divisible por la cantidad
+                de divisores positivos que tiene (contando el 1 y al propio
+                n&uacute;mero). Por ejemplo, 9 tiene como divisores a 1, 3 y 9
+                (3 divisores en total), y 9 es divisible por 3, por lo tanto 9
+                es refactorizable. En cambio, 10 tiene como divisores a 1, 2, 5
+                y 10 (4 divisores), y 10 no es divisible por 4, por lo tanto no
+                es refactorizable.</p>
+
+              <p>problema cantidadDeRefactorizables (<i>d</i>: Z, <i>h</i>: Z) :
+                Z {<br>
+                &nbsp; <strong>requiere:</strong> {0 &lt; <i>d</i> &le;
+                <i>h</i>} <br>
+                &nbsp; <strong>asegura:</strong> {<i>res</i> es la cantidad de
+                n&uacute;meros refactorizables en el rango [<i>d</i>..<i>h</i>]}
+                <br>
+                }<br>
+              </p>
+
+              <pre
+                style="background-color: #f0f0f0; /* Color de fondo del recuadro */
+  padding: 2px; /* Espacio interior */
+  border: 1px solid #ccc; /* Borde del recuadro */
+  border-radius: 5px; /* Bordes redondeados */">
+<b>Ejemplo:</b> <code>cantidadDeRefactorizables 1 10</code> debe devolver <code>4</code> <br>(porque 1, 2, 8 y 9 son refactorizables en ese rango)
+</pre>
+
+              <hr
+                style="margin: 25px 0; border: none; border-top: 1px solid #ccc;">
+
+              <li> <strong>Ejercicio 5 [2 puntos]</strong></li>
+
+              <p>Representaremos una compra con una tupla <i>String x Z x
+                  Bool</i>, donde:</p>
+              <ul>
+                <li>La primera componente de la tupla contiene el nombre del
+                  cliente</li>
+                <li>La segunda componente de la tupla contiene el monto de la
+                  compra</li>
+                <li>La tercera componente de la tupla indica si el cliente es
+                  socio del club de fidelidad</li>
+              </ul>
+              <p>Se pide implementar <i>sociosConComprasAltas</i>, que dada una
+                lista de compras y un monto umbral, devuelva los nombres de los
+                socios que realizaron al menos una compra por un monto mayor al
+                umbral.</p>
+
+              <p>problema sociosConComprasAltas (<i>compras</i>:
+                seq&#10216;String x Z x Bool&#10217;, <i>umbral</i>: Z) :
+                seq&#10216;String&#10217; {<br>
+                &nbsp; <strong>requiere:</strong> {<i>umbral</i> &ge; 0} <br>
+                &nbsp; <strong>requiere:</strong> {<i>compras</i>[i]<sub>1</sub>
+                &ge; 0 para todo i tal que 0 &le; i &lt; |<i>compras</i>|} <br>
+                &nbsp; <strong>asegura:</strong> {<i>res</i> no tiene elementos
+                repetidos} <br>
+                &nbsp; <strong>asegura:</strong> {<i>res</i> contiene los
+                nombres de todos los clientes incluidos en <i>compras</i> tales
+                que son socios y realizaron al menos una compra con monto
+                estrictamente mayor a <i>umbral</i>} <br>
+                &nbsp; <strong>asegura:</strong> {<i>res</i> contiene solamente
+                los nombres de clientes que cumplen la condici&oacute;n
+                anterior} <br>
+                }<br>
+              </p>
+
+              <!--pre style="background-color: #f0f0f0; /* Color de fondo del recuadro */
+  padding: 2px; /* Espacio interior */
+  border: 1px solid #ccc; /* Borde del recuadro */
+  border-radius: 5px; /* Bordes redondeados */">
+<b>Ejemplo:</b> <code>sociosConComprasAltas [("Ana", 500, True), ("Ana", 8000, True),<br/> ("Beto", 9000, False), ("Caro", 100, True)] 1000</code> debe devolver <code>["Ana"]</code>
+</pre-->
+
+              <hr
+                style="margin: 25px 0; border: none; border-top: 1px solid #ccc;">
+
+              <li> <strong>Ejercicio 6 [2 puntos]</strong></li>
+              <p>En Haskell, una matriz se puede representar utilizando una
+                secuencia de secuencias, donde cada secuencia interna representa
+                una fila de la matriz. Todas las filas deben tener igual
+                longitud.</p>
+
+              <p>Implementar la siguiente funci&oacute;n:</p>
+
+              <p>problema ejercicio6 (<i>matriz</i>:
+                seq&#10216;seq&#10216;Z&#10217;&#10217;) :
+                seq&#10216;seq&#10216;Z&#10217;&#10217; {<br>
+                &nbsp; <strong>requiere:</strong> {|<i>matriz</i>| &gt; 0} <br>
+                &nbsp; <strong>requiere:</strong> {para toda fila perteneciente
+                a <i>matriz</i>, |<i>fila</i>| = |<i>matriz</i>|} <br>
+                &nbsp; <strong>asegura:</strong> {|<i>res</i>| =
+                |<i>matriz</i>|} <br>
+                &nbsp; <strong>asegura:</strong> {para todo i tal que 0 &le; i
+                &lt; |<i>matriz</i>|, |<i>res</i>[i]| = |<i>matriz</i>[i]|} <br>
+                &nbsp; <strong>asegura:</strong> {para todo i, j tales que 0
+                &le; i &lt; |<i>matriz</i>| y 0 &le; j &lt; |<i>matriz</i>|: si
+                i = j entonces <i>res</i>[i][j] = 0, si no <i>res</i>[i][j] =
+                <i>matriz</i>[i][j]} <br>
+                }<br>
+              </p>
+
+              <hr
+                style="margin: 25px 0; border: none; border-top: 1px solid #ccc;">
+
+              <li> <strong>Ejercicio 7 [0,5 puntos]</strong></li>
+              <p>
+                Conteste marcando la opci&oacute;n correcta. <br />
+                <b>&iquest;Qu&eacute; nombre le pondr&iacute;as a la
+                  funci&oacute;n del ejercicio anterior?</b> <br>
+
+  <input type="radio" name="mchoice_3" id="opcion1_3" value="1" />
+      <label for="opcion1_3">AnularDiagonal</label> <br>
+  <input type="radio" name="mchoice_3" id="opcion2_3" value="2" />
+      <label for="opcion2_3">AnularMatriz</label> <br>
+  <input type="radio" name="mchoice_3" id="opcion3_3" value="3" />
+      <label for="opcion3_3">ObtenerDiagonal</label> <br>
+  <input type="radio" name="mchoice_3" id="opcion4_3" value="4" />
+      <label for="opcion4_3">Ninguna de las opciones anteriores es un buen nombre para la funci&oacute;n</label> <br>
+  </p>
+
+              <hr
+                style="margin: 25px 0; border: none; border-top: 1px solid #ccc;">
+
+              <li> <strong>Ejercicio 8 [0,5 puntos]</strong></li>
+              <p>
+                Tenemos una especificaci&oacute;n cuyo <strong>requiere</strong>
+                indica <code>n &ne; 0</code>. Creamos un test suite con 3 casos:
+                <br />
+                <ul>
+                  <li><b>caso1:</b> input <code>n = 0</code></li>
+                  <li><b>caso2:</b> input <code>n = -2</code></li>
+                  <li><b>caso3:</b> input <code>n = 5</code></li>
+                </ul>
+                Al ejecutar los casos de test obtenemos 1 falla. <br />
+                <b>&iquest;Cu&aacute;l de las siguientes opciones puede
+                  afirmarse con seguridad?</b> <br>
+
+  <input type="radio" name="mchoice_4" id="opcion1_4" value="1" />
+      <label for="opcion1_4">El programa tiene un bug</label> <br>
+  <input type="radio" name="mchoice_4" id="opcion2_4" value="2" />
+      <label for="opcion2_4">El test suite no est&aacute; bien dise&ntilde;ado</label> <br>
+  <input type="radio" name="mchoice_4" id="opcion3_4" value="3" />
+      <label for="opcion3_4">Ambas son ciertas (el programa tiene un bug y adem&aacute;s el test suite no est&aacute;n bien dise&ntilde;ado)</label> <br>
+  </p>
+
+            </ol>
+
+            <hr>
+            <h3 style="color:#1A5276">Adjunta el archivo con tu solución:</h3>
+            <p><b style="color:red">Solo se puede adjuntar 1 archivo de
+                extensión .hs. En caso de haber desarrollado tests propios, no
+                deben ser entregados.</b></p>
+
+            <label for="archivo">Seleccionar archivo a enviar:</label>
+            <input type="file" id="archivo" name="archivo" required
+              accept=".hs,text/x-haskell" />
+
+            <input type="submit" value="Enviar"
+              style="background-color: #1A5276; border-radius: 5px;
+                margin-top:10px;padding: 10px 150px;color: #FFFFFF;
+                font-size: 20px;cursor: pointer; width:100%">
+
+          </form>
+
+        </div>
+
+        <script>
+  function validaciones(event) {
+    // Obtiene todos los inputs tipo radio del formulario
+    const radioGroups = document.querySelectorAll('input[type="radio"]');
+    const groupedByName = {};
+
+    // Agrupar radios por su atributo name
+    radioGroups.forEach(radio => {
+      if (!groupedByName[radio.name]) {
+        groupedByName[radio.name] = [];
+      }
+      groupedByName[radio.name].push(radio);
+    });
+
+    // Verificar que cada grupo de radios tenga al menos uno seleccionado
+    for (const groupName in groupedByName) {
+      const radios = groupedByName[groupName];
+      const isChecked = radios.some(radio => radio.checked);
+
+      if (!isChecked) {
+        alert(`Debes seleccionar una opción para la pregunta ${groupName}`);
+        return false; // Detener la validación si falta alguna opción
+      }
+    }
+
+    var confirmacion = confirm("Confirmo que revise mis respuestas y que quiero entregar mi examen");
+    if (!confirmacion) {
+        event.preventDefault();
+        event.returnValue = false;
+        return false;
+      }
+      event.returnValue = true;
+      return true;
+  }
+</script>
+
+        <script>
+// registro una funcion para mostrar el archivo cuando se adjunta.
+// de esa forma evitamos que se adjunten otros archivos por error
+document
+  .getElementById('archivo')
+  .addEventListener(
+      'change',
+      function () {
+          var fr = new FileReader();
+          fr.onload = function () {
+              alert(this.result);
+          };
+          fr.readAsText(this.files[0]);
+      }
+  );
+
+// para forzar a bajar el template de hunit y que no se pueda abrir en un nuevo tab
+// (el browser intenta mostrar el codigo como HTML y el formato se ve raro)
+function forceDownload(url, filename) {
+  fetch(url).then(function(t) {
+    return t.blob().then((b) => {
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(b);
+      a.setAttribute("download", filename);
+      a.click();
+    });
+  });
+}
+</script>
+
+      </body>
+
+    </html>
+
+<h2>Solucion entregada por el alumno</h2>
+<pre><code>module SolucionT1 where
+
+-- Ejercicio 1
+{-
+pense que era sacar todos los pares, esto es para ello
+ejercicio1 :: [Integer] -&gt; Integer -&gt; [Integer]
+ejercicio1 [] _ = []
+ejercicio1 [x] _=[x]
+ejercicio1 (x:y:xs) n| sumanN x y n =quitarPrimer y (ejercicio1 (y:xs) n)
+                     |otherwise=x:(ejercicio1 (y:xs) n)
+-}
+ejercicio1 :: [Integer] -&gt; Integer -&gt; [Integer]
+ejercicio1 [] _ = []
+ejercicio1 [x] _=[x]
+ejercicio1 (x:y:xs) n| sumanN x y n =xs
+                     |otherwise=x:(ejercicio1 (y:xs) n)
+
+sumanN :: Integer-&gt;Integer-&gt;Integer-&gt;Bool
+sumanN x y n| x+y==n=True
+            |otherwise=False
+
+quitarPrimer :: Integer -&gt; [Integer]-&gt;[Integer]
+quitarPrimer _ []=[]
+quitarPrimer q (x:xs)|q==x=xs
+                     |otherwise=x:quitarPrimer q xs
+
+
+-- Ejercicio 4
+cantidadDeRefactorizables :: Integer -&gt; Integer -&gt; Integer
+cantidadDeRefactorizables d h=longitud (reFactorizablesEntre d h)
+
+reFactorizablesEntre:: Integer-&gt;Integer-&gt;[Integer]
+reFactorizablesEntre d h| d&gt;h=[]
+                        |esReFactorizable d =d:reFactorizablesEntre (d+1) h
+                        |otherwise=reFactorizablesEntre (d+1) h
+
+esReFactorizable :: Integer-&gt;Bool
+esReFactorizable n| esDivisor n (cantidadDivisoresN n)=True
+                  |otherwise=False
+
+cantidadDivisoresN:: Integer-&gt;Integer
+cantidadDivisoresN n= longitud (cantidadDivisoresPropios n)
+
+longitud :: [Integer]-&gt;Integer
+longitud []=0
+longitud (x:xs)=1+ longitud xs
+
+cantidadDivisoresPropios :: Integer -&gt; [Integer]
+cantidadDivisoresPropios 1 = [1]
+cantidadDivisoresPropios n=cantidadDivisoresAux n 1
+
+cantidadDivisoresAux:: Integer-&gt;Integer-&gt;[Integer]
+cantidadDivisoresAux x d| x&lt;d=[]
+cantidadDivisoresAux x d| esDivisor x d=d:cantidadDivisoresAux x (d+1)
+                        |otherwise= cantidadDivisoresAux x (d+1)
+
+esDivisor :: Integer-&gt;Integer-&gt;Bool
+esDivisor x d|mod x d ==0=True
+             |otherwise=False
+
+
+
+
+
+-- Ejercicio 5
+sociosConComprasAltas :: [(String, Integer, Bool)] -&gt; Integer -&gt; [String]
+sociosConComprasAltas [] _ = []
+sociosConComprasAltas (xs) u=sacarRepetidos (sociosConComprasAltasAux xs u)
+
+--sociosConComprasAltas [(&quot;a&quot;,21,True),(&quot;b&quot;,0,True),(&quot;c&quot;,2,True),(&quot;a&quot;,211,True),(&quot;d&quot;,221,True)] 20
+sociosConComprasAltasAux :: [(String, Integer, Bool)] -&gt; Integer -&gt; [String]
+sociosConComprasAltasAux [] _ = []
+sociosConComprasAltasAux ((x,y,z):xs) u|esBuenComprador (x,y,z) u=(x:sociosConComprasAltasAux xs u)
+                                    |otherwise=sociosConComprasAltasAux xs u
+
+esBuenComprador :: (String,Integer,Bool)-&gt;Integer-&gt;Bool
+esBuenComprador (x,y,z) u|pasaUmbral (x,y,z) u &amp;&amp; esSocio (x,y,z)=True
+                         |otherwise=False
+
+pasaUmbral :: (String,Integer,Bool)-&gt;Integer-&gt;Bool
+pasaUmbral (x,y,z) u| y&gt;u=True
+                    |otherwise=False
+
+esSocio :: (String,Integer,Bool)-&gt;Bool
+esSocio (x,y,z)|z==True=True
+               |otherwise=False
+
+quitarPrimerS:: String-&gt;[String]-&gt;[String]
+quitarPrimerS _ []=[]
+quitarPrimerS q (x:xs)|q==x=xs
+                      |otherwise=(x:(quitarPrimerS q xs))
+
+sacarRepetidos:: [String]-&gt;[String]
+sacarRepetidos []=[]
+sacarRepetidos (x:xs)|pertenece x xs=sacarRepetidos (x:quitarPrimerS x xs)
+                     |otherwise = (x:(sacarRepetidos xs))
+
+pertenece::String-&gt;[String]-&gt;Bool
+pertenece _ []=False
+pertenece palabra (x:xs)|palabra==x=True
+                        |otherwise=pertenece palabra xs
+
+-- Ejercicio 6
+ejercicio6 :: [[Integer]] -&gt; [[Integer]]
+ejercicio6 [] = []
+ejercicio6 (x:xs)=ejercicio6Aux (x:xs) 1 (longitud x)
+
+ejercicio6Aux :: [[Integer]]-&gt;Integer-&gt;Integer-&gt;[[Integer]]
+ejercicio6Aux (x:xs) d l|d==l=[cambiarNElemento l (x)]
+                        |d&lt;=l=(cambiarNElemento d x):(ejercicio6Aux xs (d+1) l)
+                        |otherwise=[]
+
+--ejercicio6 [[1]]
+--ejercicio6 [[1,2],[3,4]]
+--ejercicio6 [[1,2,3,20],[4,5,6,30],[7,8,9,40],[10,11,12,13]]
+--ejercicio6 [[1,0,0],[0,1,0],[0,0,1]]
+--ejercicio6 [[1,0,0],[0,0,0],[0,0,0]]
+
+
+esParteDeDiagonal::(Integer,Integer) -&gt;Bool
+esParteDeDiagonal (f,c)|f==c=True
+                     |otherwise=False
+
+
+
+cambiarNElemento :: Integer-&gt;[Integer]-&gt;[Integer]
+cambiarNElemento _ []=[]
+cambiarNElemento n (x:xs)|n==1= 0:(xs)
+                         |otherwise= x:(cambiarNElemento (n-1) xs)
+</code></pre>
+<h2>Resultado de la compilacion</h2>
+<pre><code>Loaded package environment from /home/jgodoy/.ghc/x86_64-linux-9.4.7/environments/default
+[1 of 1] Compiling SolucionT1       ( correcciones/parcial_funcional_tm/varela_gamarnik_damian_47570011/submission.hs.main.hs, correcciones/parcial_funcional_tm/varela_gamarnik_damian_47570011/submission.hs.main.o )
+
+</code></pre>
+<h2>Ejecucion de los tests</h2>
+<h3>tema1-test-ej1.hs.compilacion.out</h3>
+<p>Puntaje del ej: 0.0 / 2</p>
+<pre><code>
+Tema1-test-ej1.hs:18:32: error:
+    Ambiguous occurrence ‘pertenece’
+    It could refer to
+       either ‘Solucion.pertenece’,
+              imported from ‘Solucion’ at Tema1-test-ej1.hs:1:1-15
+              (and originally defined at Solucion.hs:100:1-9)
+           or ‘Main.pertenece’, defined at Tema1-test-ej1.hs:17:1
+   |
+18 | pertenece x (y:ys) = x == y || pertenece x ys
+   |                                ^^^^^^^^^
+
+Tema1-test-ej1.hs:21:157: error:
+    Ambiguous occurrence ‘pertenece’
+    It could refer to
+       either ‘Solucion.pertenece’,
+              imported from ‘Solucion’ at Tema1-test-ej1.hs:1:1-15
+              (and originally defined at Solucion.hs:100:1-9)
+           or ‘Main.pertenece’, defined at Tema1-test-ej1.hs:17:1
+   |
+21 |     &quot;Ejemplo simple, un unico par valido&quot; ~: assertBool (&quot;Se esperaba una de estas soluciones: [[5,7,1]] . Se obtuvo &quot; ++ show (ejercicio1 [5,3,2,7,1] 5)) (pertenece (ejercicio1 [5,3,2,7,1] 5) [[5,7,1]]),
+   |                                                                                                                                                             ^^^^^^^^^
+
+Tema1-test-ej1.hs:22:168: error:
+    Ambiguous occurrence ‘pertenece’
+    It could refer to
+       either ‘Solucion.pertenece’,
+              imported from ‘Solucion’ at Tema1-test-ej1.hs:1:1-15
+              (and originally defined at Solucion.hs:100:1-9)
+           or ‘Main.pertenece’, defined at Tema1-test-ej1.hs:17:1
+   |
+22 |     &quot;Numeros negativos, un unico par valido&quot; ~: assertBool (&quot;Se esperaba una de estas soluciones: [[-1,4,-2]] . Se obtuvo &quot; ++ show (ejercicio1 [-3,0,-1,4,-2] (-3))) (pertenece (ejercicio1 [-3,0,-1,4,-2] (-3)) [[-1,4,-2]]),
+   |                                                                                                                                                                        ^^^^^^^^^
+
+Tema1-test-ej1.hs:23:137: error:
+    Ambiguous occurrence ‘pertenece’
+    It could refer to
+       either ‘Solucion.pertenece’,
+              imported from ‘Solucion’ at Tema1-test-ej1.hs:1:1-15
+              (and originally defined at Solucion.hs:100:1-9)
+           or ‘Main.pertenece’, defined at Tema1-test-ej1.hs:17:1
+   |
+23 |     &quot;Lista minima de longitud 2&quot; ~: assertBool (&quot;Se esperaba una de estas soluciones: [[]] . Se obtuvo &quot; ++ show (ejercicio1 [3,4] 7)) (pertenece (ejercicio1 [3,4] 7) [[]]),
+   |                                                                                                                                         ^^^^^^^^^
+
+Tema1-test-ej1.hs:24:189: error:
+    Ambiguous occurrence ‘pertenece’
+    It could refer to
+       either ‘Solucion.pertenece’,
+              imported from ‘Solucion’ at Tema1-test-ej1.hs:1:1-15
+              (and originally defined at Solucion.hs:100:1-9)
+           or ‘Main.pertenece’, defined at Tema1-test-ej1.hs:17:1
+   |
+24 |     &quot;Tres posiciones validas dispersas&quot; ~: assertBool (&quot;Se esperaba una de estas soluciones: [[1,2,3,5,0], [1,1,4,5,0], [1,2,3,1,4]] . Se obtuvo &quot; ++ show (ejercicio1 [1,2,3,1,4,5,0] 5)) (pertenece (ejercicio1 [1,2,3,1,4,5,0] 5) [[1,2,3,5,0], [1,1,4,5,0], [1,2,3,1,4]]),
+   |                                                                                                                                                                                             ^^^^^^^^^
+
+Tema1-test-ej1.hs:25:157: error:
+    Ambiguous occurrence ‘pertenece’
+    It could refer to
+       either ‘Solucion.pertenece’,
+              imported from ‘Solucion’ at Tema1-test-ej1.hs:1:1-15
+              (and originally defined at Solucion.hs:100:1-9)
+           or ‘Main.pertenece’, defined at Tema1-test-ej1.hs:17:1
+   |
+25 |     &quot;Pares solapados que comparten elementos&quot; ~: assertBool (&quot;Se esperaba una de estas soluciones: [[1,4]] . Se obtuvo &quot; ++ show (ejercicio1 [1,4,1,4] 5)) (pertenece (ejercicio1 [1,4,1,4] 5) [[1,4]]),
+   |                                                                                                                                                             ^^^^^^^^^
+
+Tema1-test-ej1.hs:26:238: error:
+    Ambiguous occurrence ‘pertenece’
+    It could refer to
+       either ‘Solucion.pertenece’,
+              imported from ‘Solucion’ at Tema1-test-ej1.hs:1:1-15
+              (and originally defined at Solucion.hs:100:1-9)
+           or ‘Main.pertenece’, defined at Tema1-test-ej1.hs:17:1
+   |
+26 |     &quot;Numeros grandes con varias posiciones validas&quot; ~: assertBool (&quot;Se esperaba una de estas soluciones: [[500,1500,2000,0], [1000,1000,2000,0], [1000,1000,500,1500]] . Se obtuvo &quot; ++ show (ejercicio1 [1000,1000,500,1500,2000,0] 2000)) (pertenece (ejercicio1 [1000,1000,500,1500,2000,0] 2000) [[500,1500,2000,0], [1000,1000,2000,0], [1000,1000,500,1500]]),
+   |                                                                                                                                                                                                                                              ^^^^^^^^^
+
+Tema1-test-ej1.hs:27:229: error:
+    Ambiguous occurrence ‘pertenece’
+    It could refer to
+       either ‘Solucion.pertenece’,
+              imported from ‘Solucion’ at Tema1-test-ej1.hs:1:1-15
+              (and originally defined at Solucion.hs:100:1-9)
+           or ‘Main.pertenece’, defined at Tema1-test-ej1.hs:17:1
+   |
+27 |     &quot;n negativo con multiples posiciones validas&quot; ~: assertBool (&quot;Se esperaba una de estas soluciones: [[100,2,-12,3,-13], [100,1,-11,3,-13], [100,1,-11,2,-12]] . Se obtuvo &quot; ++ show (ejercicio1 [100,1,-11,2,-12,3,-13] (-10))) (pertenece (ejercicio1 [100,1,-11,2,-12,3,-13] (-10)) [[100,2,-12,3,-13], [100,1,-11,3,-13], [100,1,-11,2,-12]]),
+   |                                                                                                                                                                                                                                     ^^^^^^^^^
+
+Tema1-test-ej1.hs:28:183: error:
+    Ambiguous occurrence ‘pertenece’
+    It could refer to
+       either ‘Solucion.pertenece’,
+              imported from ‘Solucion’ at Tema1-test-ej1.hs:1:1-15
+              (and originally defined at Solucion.hs:100:1-9)
+           or ‘Main.pertenece’, defined at Tema1-test-ej1.hs:17:1
+   |
+28 |     &quot;Suma cero con multiples posiciones validas&quot; ~: assertBool (&quot;Se esperaba una de estas soluciones: [[0,3,-3,8], [0,5,-5,8]] . Se obtuvo &quot; ++ show (ejercicio1 [0,5,-5,3,-3,8] 0)) (pertenece (ejercicio1 [0,5,-5,3,-3,8] 0) [[0,3,-3,8], [0,5,-5,8]])
+   |                                                                                                                                                                                       ^^^^^^^^^
+
+
+Cases: 1  Tried: 1  Errors: 1  Failures: 0
+
+</code></pre>
+<h3>mchoice.json-ej2.compilacion.out</h3>
+<p>Puntaje del ej: 0.5 / 0.5</p>
+<pre><code>mchoice ej2: respuesta del alumno=2, respuesta correcta=2
+
+Ran 1 test in 0 seconds
+
+OK
+
+</code></pre>
+<h3>mchoice.json-ej3.compilacion.out</h3>
+<p>Puntaje del ej: 0.5 / 0.5</p>
+<pre><code>mchoice ej3: respuesta del alumno=1, respuesta correcta=1
+
+Ran 1 test in 0 seconds
+
+OK
+
+</code></pre>
+<h3>tema1-test-ej4.hs.compilacion.out</h3>
+<p>Puntaje del ej: 2 / 2</p>
+<pre><code>
+
+Cases: 9  Tried: 1  Errors: 0  Failures: 0
+
+Cases: 9  Tried: 2  Errors: 0  Failures: 0
+
+Cases: 9  Tried: 3  Errors: 0  Failures: 0
+
+Cases: 9  Tried: 4  Errors: 0  Failures: 0
+
+Cases: 9  Tried: 5  Errors: 0  Failures: 0
+
+Cases: 9  Tried: 6  Errors: 0  Failures: 0
+
+Cases: 9  Tried: 7  Errors: 0  Failures: 0
+
+Cases: 9  Tried: 8  Errors: 0  Failures: 0
+
+
+Cases: 9  Tried: 9  Errors: 0  Failures: 0
+
+
+Cases: 9  Tried: 9  Errors: 0  Failures: 0
+
+</code></pre>
+<h3>tema1-test-ej5.hs.compilacion.out</h3>
+<p>Puntaje del ej: 2 / 2</p>
+<pre><code>
+
+Cases: 12  Tried: 1  Errors: 0  Failures: 0
+
+Cases: 12  Tried: 2  Errors: 0  Failures: 0
+
+Cases: 12  Tried: 3  Errors: 0  Failures: 0
+
+Cases: 12  Tried: 4  Errors: 0  Failures: 0
+
+Cases: 12  Tried: 5  Errors: 0  Failures: 0
+
+Cases: 12  Tried: 6  Errors: 0  Failures: 0
+
+Cases: 12  Tried: 7  Errors: 0  Failures: 0
+
+Cases: 12  Tried: 8  Errors: 0  Failures: 0
+
+Cases: 12  Tried: 9  Errors: 0  Failures: 0
+
+Cases: 12  Tried: 10  Errors: 0  Failures: 0
+
+Cases: 12  Tried: 11  Errors: 0  Failures: 0
+
+
+Cases: 12  Tried: 12  Errors: 0  Failures: 0
+
+
+Cases: 12  Tried: 12  Errors: 0  Failures: 0
+
+</code></pre>
+<h3>tema1-test-ej6.hs.compilacion.out</h3>
+<p>Puntaje del ej: 2 / 2</p>
+<pre><code>
+
+Cases: 10  Tried: 1  Errors: 0  Failures: 0
+
+Cases: 10  Tried: 2  Errors: 0  Failures: 0
+
+Cases: 10  Tried: 3  Errors: 0  Failures: 0
+
+Cases: 10  Tried: 4  Errors: 0  Failures: 0
+
+Cases: 10  Tried: 5  Errors: 0  Failures: 0
+
+Cases: 10  Tried: 6  Errors: 0  Failures: 0
+
+Cases: 10  Tried: 7  Errors: 0  Failures: 0
+
+Cases: 10  Tried: 8  Errors: 0  Failures: 0
+
+Cases: 10  Tried: 9  Errors: 0  Failures: 0
+
+
+Cases: 10  Tried: 10  Errors: 0  Failures: 0
+
+
+Cases: 10  Tried: 10  Errors: 0  Failures: 0
+
+</code></pre>
+<h3>mchoice.json-ej7.compilacion.out</h3>
+<p>Puntaje del ej: 0.5 / 0.5</p>
+<pre><code>mchoice ej7: respuesta del alumno=1, respuesta correcta=1
+
+Ran 1 test in 0 seconds
+
+OK
+
+</code></pre>
+<h3>mchoice.json-ej8.compilacion.out</h3>
+<p>Puntaje del ej: 0.5 / 0.5</p>
+<pre><code>mchoice ej8: respuesta del alumno=2, respuesta correcta=2
+
+Ran 1 test in 0 seconds
+
+OK
+
+</code></pre>
+<p>FIN</p>
