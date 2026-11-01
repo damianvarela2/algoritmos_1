@@ -1,3 +1,5 @@
+import random
+import numpy as np
 #Ejercicio 1
 #1
 def pertenece1(s:list[int],n:int)->bool:
@@ -291,3 +293,127 @@ def ganoEnColumnas(jugador:str,tablero:list[list[str]])->bool:
 
 def ganoEnDiagonal(jugador:str,tablero:list[list[str]])->bool:
     return(jugador==tablero[0][0]==tablero[1][1]==tablero[2][2] or jugador==tablero[2][0]==tablero[1][1]==tablero[0][2])
+
+#Ejercicio opcional
+def exponenciacion_matriz(d:int,p:int)->list[list[int]]:
+    res:list[list[int]]=matriz_identidad(d)
+    m:list[list[int]] = np.random.randint(0,10, (d, d)).tolist()
+    for _ in range(p):
+        res=producto_matrices(res,m)
+    return res
+
+
+def producto_matrices(a: list[list[int]], b: list[list[int]]) -> list[list[int]]:
+    n: int = len(a)
+    res: list[list[int]] = []
+    
+    for i in range(n):
+        fila: list[int] = []
+        for j in range(n):
+            suma: int = 0
+            for k in range(n):
+                suma += a[i][k] * b[k][j]
+            fila.append(suma)
+        res.append(fila)
+        
+    return res
+
+def matriz_identidad(d: int) -> list[list[int]]:
+    res: list[list[int]] = []
+    
+    for i in range(d):
+        fila: list[int] = []
+        for j in range(d):
+            if i == j:
+                fila.append(1)
+            else:
+                fila.append(0)
+        res.append(fila)
+        
+    return res
+
+#Ejercicios interactivos
+#Ejercicio 7
+
+def lista_interactiva_nombres()->list[str]:
+    res:list[str]=[]
+    nombre:str=input("Ingrese su nombre, listo o ENTER para cortar: ")
+    while nombre!="" and nombre!="listo":
+        res.append(nombre)
+        nombre:str=input("Ingrese su nombre, listo o ENTER para cortar: ")
+    return res
+
+def historial_monedero() -> list[tuple[str, int]]:
+    historial:list[tuple[str,int]]=[]
+    operacion:str=""
+    while(operacion!="x"):
+        operacion=input("Ingrese su operacion, x para cortar, d para descontar, c para cargar: ")
+        if operacion=="c" or operacion=="d":
+            monto:int=int(input("Ingrese el monto de su operacion: "))
+            historial.append((operacion,monto))
+    return historial
+
+def siete_y_medio():
+    cartas_posibles:list[int]=[1, 2, 3, 4, 5, 6, 7, 10, 11, 12]
+    historial_cartas: list[int] = []
+    puntos:float=0.0
+    carta: int = random.choice(cartas_posibles)
+    historial_cartas.append(carta)
+    if carta in [10, 11, 12]:
+        puntos += 0.5
+    else:
+        puntos += carta
+        
+    print(f"Te tocó un {carta}. Puntaje acumulado: {puntos}")
+    
+    decision: str = ""
+    while puntos <= 7.5 and decision != "plantarse":
+        decision = input("¿Querés 'seguir' sacando otra carta o 'plantarse'?: ")
+        
+        if decision == "seguir":
+            carta = random.choice(cartas_posibles)
+            historial_cartas.append(carta)
+            if carta in [10, 11, 12]:
+                puntos += 0.5
+            else:
+                puntos += carta
+            print(f"Te tocó un {carta}. Puntaje acumulado: {puntos}")
+            
+    if puntos > 7.5:
+        print("¡Perdiste! Te pasaste de 7.5.")
+    else:
+        print(f"Te plantaste con {puntos} puntos.")
+        
+    return historial_cartas
+
+def fortaleza_contrasenia(password:str)->str:
+    res:str
+    if(len(password)>8 and tieneUpper(password) and tieneLower(password) and tieneNum(password)):
+        res="VERDE"
+    elif(len(password)<5):
+        res="ROJA"
+    else:
+        res="AMARILLA"
+    return res
+
+def tieneUpper(palabra:str)->bool:
+    res:bool=False
+    for letra in palabra:
+        if ("A"<=letra<="Z"):
+            res=True
+    return res
+
+
+def tieneLower(palabra:str)->bool:
+    res:bool=False
+    for letra in palabra:
+        if ("a"<=letra<="z"):
+            res=True
+    return res
+
+def tieneNum(palabra:str)->bool:
+    res:bool=False
+    for letra in palabra:
+        if ("0"<=letra<="9"):
+            res=True
+    return res
