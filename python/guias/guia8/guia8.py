@@ -1,5 +1,6 @@
 from queue import LifoQueue as Pila
 from queue import Queue as Cola
+from typing import Union
 import random
 #Pilas
 def imprimir_legal(p:Pila[int])->None:
@@ -11,6 +12,14 @@ def imprimir_legal(p:Pila[int])->None:
         print(elemento_acutal)
     while not (p_aux.empty()):
         p.put(p_aux.get())
+
+def pila_a_lista(p: Pila) -> list:
+    aux: list = []
+    while not p.empty():
+        aux.append(p.get())
+    for elem in reversed(aux):
+        p.put(elem)
+    return aux[::-1]
 
 def devuelta(q:Pila,p:Pila)->None:
     while not(p.empty()):
@@ -249,5 +258,66 @@ def atencion_a_clientes(c:Cola[tuple[str,int,bool,bool]])->Cola[tuple[str,int,bo
     return res
 
 
+#Diccionarios
+#Ejercicio 16
+def calcular_promedio_por_estudiante(notas:list[tuple[str,float]])->dict[str,float]:
+    d_aux:dict[str,list[float]]={}
+    d:dict[str,float]={}
+    for alumno in notas:
+        if alumno[0] not in (d_aux.keys()):
+            d_aux[alumno[0]]=[alumno[1]]
+        else:
+            d_aux[alumno[0]].append(alumno[1])
+    for (alumno1,notas1) in d_aux.items():
+        d[alumno1]=sum(notas1)/len(notas1)
+    return d
 
-        
+#Ejercicio 17
+def lista_a_pila(lista) -> Pila:
+    p: Pila = Pila()
+    for elem in lista:
+        p.put(elem)
+    return p
+
+histA:Pila[str]=lista_a_pila(["LINK1","LINK2"])
+histB:Pila[str]=lista_a_pila(["LINK3","LINK4"])
+histC:Pila[str]=lista_a_pila(["LINK5","LINK6"])
+histD:Pila[str]=lista_a_pila(["LINK7","LINK8"])
+
+
+historiales:dict[str,Pila[str]]={
+    "a":histA,
+    "b":histB,
+    "c":histC,
+    "d":histD
+}
+
+
+
+def visitar_sitio(historiales:dict[str,Pila[str]],usuario:str,sitio:str):
+    historial_actual:Pila[str]=Pila()
+    if usuario in historiales.keys():
+        historial_actual=historiales[usuario]
+        historial_actual.put(sitio)
+    else:
+        historial_actual=Pila()
+        historial_actual.put(sitio)
+        historiales[usuario]=historial_actual
+
+def navegar_atras(historiales:dict[str,Pila[str]],usuario:str)->str:
+    res:str
+    res=historiales[usuario].get()
+    return(res)
+
+def agregar_producto(inventario:dict[str,dict[str,Union[int,float]]],nombre:str,precio:float,cantidad:int):
+    inventario[nombre]={"precio":precio,"cantidad":cantidad}
+
+def actualizar_stock(inventario:dict[str,dict[str,Union[int,float]]],nombre:str,cantidad:int):
+    precio:float=inventario[nombre]["precio"]
+    inventario[nombre]={"precio":precio,"cantidad":cantidad}
+
+def calcular_valor_inventario(inventario:dict[str,dict[str,Union[int,float]]])->float:
+    valor:float=0.0
+    for nombre in inventario.keys():
+        valor=valor+inventario[nombre]["precio"]*inventario[nombre]["cantidad"]
+    return valor

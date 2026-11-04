@@ -1,173 +1,214 @@
-<div align="center">
+# Algoritmos y Estructuras de Datos I
 
-# 🎓 Algoritmos y Estructuras de Datos I
-### *Introducción a la Programación — DC, FCEyN (UBA)*
-
-[![UBA](https://img.shields.io/badge/UBA-Exactas%20(DC)-1b365d?style=for-the-badge&logo=google-scholar&logoColor=white)](https://www.dc.uba.ar/)
-[![Haskell](https://img.shields.io/badge/Haskell-GHCi-5e5086?style=for-the-badge&logo=haskell&logoColor=white)](#1--parcial-de-haskell)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?style=for-the-badge&logo=python&logoColor=ffd343)](#2--parcial-de-python)
-[![Tests](https://img.shields.io/badge/Tests-unittest-2ea44f?style=for-the-badge&logo=pytest&logoColor=white)#](#-ejecución-rápida)
-
-*Repositorio de guías prácticas, apuntes de clase, modelos de parcial y Trabajo Práctico del 2.º Cuatrimestre 2026.*
+Resoluciones de guías prácticas, apuntes de clase y modelos de examen de la materia **Algoritmos y Estructuras de Datos I** (equivalente a *Introducción a la Programación*), dictada en el Departamento de Computación de la Facultad de Ciencias Exactas y Naturales, Universidad de Buenos Aires (FCEyN - UBA).
 
 ---
 
-[📂 Estructura](#-estructura-del-repositorio) •
-[📚 Progreso de Guías](#-progreso-de-guías-y-contenidos) •
-[🚫 Funciones Permitidas e Inválidas](#-funciones-permitidas-y-prohibidas-en-parciales) •
-[🚀 Ejecución Rápida](#-ejecución-rápida)
+## Tabla de contenidos
 
-</div>
+1. [Descripción general](#descripción-general)
+2. [Estructura del repositorio](#estructura-del-repositorio)
+3. [Contenidos por módulo](#contenidos-por-módulo)
+   - [Programación Funcional (Haskell)](#1-programación-funcional-haskell)
+   - [Programación Imperativa (Python)](#2-programación-imperativa-python)
+   - [Clases y material de evaluación](#3-clases-y-material-de-evaluación)
+4. [Lineamientos de cátedra para evaluaciones](#lineamientos-de-cátedra-para-evaluaciones)
+   - [Especificación de funciones permitidas en Haskell](#especificación-de-funciones-permitidas-en-haskell)
+   - [Especificación de funciones permitidas en Python](#especificación-de-funciones-permitidas-en-python)
+5. [Entorno y ejecución](#entorno-y-ejecución)
+6. [Información académica](#información-académica)
 
 ---
 
-## 📂 Estructura del repositorio
+## Descripción general
+
+Este repositorio centraliza el desarrollo práctico de la asignatura a lo largo del cuatrimestre. El programa aborda la resolución de problemas a partir de especificaciones formales (contratos con precondiciones `requiere` y postcondiciones `asegura`) bajo dos paradigmas de programación:
+
+- **Paradigma funcional (Haskell):** Tipos básicos, funciones, recursión sobre enteros y listas, polimorfismo y *pattern matching*.
+- **Paradigma imperativo (Python):** Estado, control de flujo, pasaje de parámetros por valor y referencia (`in`, `out`, `inout`), secuencias, matrices, tipos abstractos de datos (Pilas y Colas), diccionarios, manejo de archivos y pruebas unitarias (`unittest`).
+
+---
+
+## Estructura del repositorio
 
 ```text
 algoritmos_1/
-├── 🟣 haskell/
+├── haskell/
 │   └── Practicas/
-│       ├── guia3/                      # Guía 3: Introducción a Haskell, tuplas y pattern matching
+│       ├── guia3/                      # Guía 3: Introducción a Haskell y tipos básicos
 │       ├── guia4/                      # Guía 4: Recursión sobre números enteros
-│       └── guia5/                      # Guía 5: Recursión sobre listas y polimorfismo
+│       └── guia5/                      # Guía 5: Recursión sobre listas
 │
-├── 🐍 python/
+├── python/
 │   └── guias/
-│       ├── guia6/                      # Guía 6: Introducción al lenguaje imperativo
-│       ├── guia7/                      # Guía 7: Listas, matrices y pasaje de parámetros (+ unittest)
-│       └── guia8/                      # Guía 8: Pilas (LifoQueue), Colas (Queue), Diccionarios y Archivos (+ unittest)
+│       ├── guia6/                      # Guía 6: Introducción a la programación imperativa
+│       ├── guia7/                      # Guía 7: Secuencias, listas y matrices (+ tests)
+│       └── guia8/                      # Guía 8: Pilas, colas, diccionarios y archivos (+ tests)
 │
-├── 📓 clases/
-│   ├── haskell/                        # Prácticas en clase, funciones auxiliares y simulacros
-│   │   ├── funcioneshs.hs              # Compendio de funciones de práctica
-│   │   ├── SolucionT1(1).hs            # Resolución de tema de evaluación
-│   │   └── parciales/                  # Modelos resueltos (2C2023, 1C2024, 2C2024, 1C2025)
-│   └── python/                         # Apuntes de clase (clase5_10, clase7_10, clase19_10) y atajos
-│
-├── ♟️ tp/
-│   ├── Enunciado_v1.2.pdf              # Especificación formal del Trabajo Práctico
-│   └── 2c2026_tppython/                # TP de Python: Juego Arimaa (lógica, interfaz gráfica y suite de tests)
-│
-├── 📄 validas_parcial_hs.pdf           # Documento oficial: funciones permitidas en Haskell
-└── 📄 validas_parcial_py.pdf           # Documento oficial: funciones permitidas en Python
+└── clases/
+    ├── haskell/
+    │   ├── Practicas/                  # Ejercicios desarrollados durante las clases prácticas
+    │   ├── parciales/                  # Exámenes parciales resueltos de cuatrimestres anteriores
+    │   ├── funcioneshs.hs              # Funciones auxiliares y de repaso general
+    │   ├── SolucionT1(1).hs            # Resolución de tema de evaluación
+    │   └── nota_practica_ip_26-08.txt  # Apuntes de clase práctica
+    └── python/
+        ├── clase28_9.py                # Introducción a pruebas unitarias con unittest
+        ├── clase5_10python.py          # Ejercicios de secuencias y ciclos
+        ├── clase7_10.py                # Práctica sobre listas y mutabilidad
+        ├── clase19_10.py               # Práctica sobre TAD Pila y Cola
+        ├── claseDiccionarios.py        # Práctica sobre diccionarios y manejo de archivos
+        ├── test.py                     # Casos de prueba desarrollados en clase
+        └── atajos_python               # Notas de referencia rápida del lenguaje
 ```
 
 ---
 
-## 📚 Progreso de Guías y Contenidos
+## Contenidos por módulo
 
-| Módulo | Unidad / Archivo | Temas Principales | Tests | Estado |
-| :---: | :--- | :--- | :---: | :---: |
-| **Haskell** | [`guia3.hs`](./haskell/Practicas/guia3/guia3.hs) | Tipos básicos, guardas, *pattern matching* y tuplas | `GHCi` | ✅ Completada |
-| **Haskell** | [`guia4.hs`](./haskell/Practicas/guia4/guia4.hs) | Recursión sobre enteros, divisibilidad, sumatorias | `GHCi` | ✅ Completada |
-| **Haskell** | [`guia5.hs`](./haskell/Practicas/guia5/guia5.hs) | Recursión sobre listas, orden, strings | `GHCi` | ✅ Completada |
-| **Haskell** | [`clases/haskell/parciales/`](./clases/haskell/parciales/) | Parciales `2C2023`, `1C2024`, `2C2024`, `1C2025` y simulacro | `GHCi` | ✅ Resueltos |
-| **Python** | [`guia6.py`](./python/guias/guia6/guia6.py) | Funciones, condicionales, ciclos `while` / `for` | Manual | ✅ Completada |
-| **Python** | [`guia7.py`](./python/guias/guia7/guia7.py) | Secuencias, listas, matrices, mutabilidad (`in`/`out`/`inout`) | [`tests_guia7.py`](./python/guias/guia7/tests_guia7.py) | ✅ Completada |
-| **Python** | [`guia8.py`](./python/guias/guia8/guia8.py) | TAD Pila (`LifoQueue`), TAD Cola (`Queue`), Diccionarios y Archivos | [`tests_guia8.py`](./python/guias/guia8/tests_guia8.py) | 🔄 En curso (Pilas y Colas) |
-| **TP** | [`tp/2c2026_tppython/`](./tp/2c2026_tppython/) | **Trabajo Práctico — Arimaa** (`arimaa.py`, `tests.py`, `cubrimiento.py`) | `unittest` + `coverage` | ✅ Entregado |
+### 1. Programación Funcional (Haskell)
 
----
+Resoluciones ubicadas en [`haskell/Practicas/`](./haskell/Practicas/):
 
-## 🚫 Funciones permitidas y prohibidas en parciales
-
-> [!IMPORTANT]
-> Cualquier función, método o construcción del lenguaje que **no figure explícitamente** en los listados oficiales ([`validas_parcial_hs.pdf`](./validas_parcial_hs.pdf) y [`validas_parcial_py.pdf`](./validas_parcial_py.pdf)) **debe ser implementada manualmente** como función auxiliar. El uso de funciones no permitidas **anula el ejercicio**.
+| Guía | Archivo principal | Contenidos abordados |
+| :--- | :--- | :--- |
+| **Guía 3** | [`guia3.hs`](./haskell/Practicas/guia3/guia3.hs) | Definición de funciones, signaturas de tipos, guardas, *pattern matching* y operaciones con tuplas. |
+| **Guía 4** | [`guia4.hs`](./haskell/Practicas/guia4/guia4.hs) | Esquemas de recursión sobre números enteros, divisibilidad, extracción de dígitos y sumatorias. |
+| **Guía 5** | [`guia5.hs`](./haskell/Practicas/guia5/guia5.hs) | Recursión estructural sobre listas, polimorfismo, predicados sobre secuencias y manipulación de cadenas de caracteres (`[Char]`). |
 
 ---
 
-### 1. 🟣 Parcial de Haskell ([`validas_parcial_hs.pdf`](./validas_parcial_hs.pdf))
+### 2. Programación Imperativa (Python)
 
-#### ✅ Funciones y operadores permitidos
+Resoluciones y suites de pruebas ubicadas en [`python/guias/`](./python/guias/):
 
-| Categoría | Funciones / Operadores |
+| Guía | Código fuente | Suite de pruebas | Contenidos abordados |
+| :--- | :--- | :--- | :--- |
+| **Guía 6** | [`guia6.py`](./python/guias/guia6/guia6.py) | — | Funciones en Python, tipado estático, estructuras condicionales e iteración mediante `while` y `for`. |
+| **Guía 7** | [`guia7.py`](./python/guias/guia7/guia7.py) | [`tests_guia7.py`](./python/guias/guia7/tests_guia7.py) | Recorrido y modificación de listas y matrices, aliasing, mutabilidad y cumplimiento de contratos `in`, `out` e `inout`. |
+| **Guía 8** | [`guia8.py`](./python/guias/guia8/guia8.py) | [`tests_guia8.py`](./python/guias/guia8/tests_guia8.py) | Tipos Abstractos de Datos (`LifoQueue` y `Queue`), preservación de parámetros de entrada, diccionarios (`dict`) y lectura/escritura de archivos de texto. |
+
+---
+
+### 3. Clases y material de evaluación
+
+El directorio [`clases/`](./clases/) reúne resoluciones hechas durante el cursado y entrenamientos para las instancias de evaluación:
+
+- **Modelos de primer parcial (Haskell):** Disponibles en [`clases/haskell/parciales/`](./clases/haskell/parciales/):
+  - [`parcial2C2023.hs`](./clases/haskell/parciales/parcial2C2023.hs) — Segundo cuatrimestre 2023
+  - [`1C2024.hs`](./clases/haskell/parciales/1C2024.hs) — Primer cuatrimestre 2024
+  - [`parcial2C2024.hs`](./clases/haskell/parciales/parcial2C2024.hs) — Segundo cuatrimestre 2024
+  - [`parcial1C2025.hs`](./clases/haskell/parciales/parcial1C2025.hs) — Primer cuatrimestre 2025
+  - [`ejerciciosTipoParcial.hs`](./clases/haskell/parciales/ejerciciosTipoParcial.hs) — Ejercicios integradores adicionales
+- **Entregas y simulacros de Haskell:** En [`clases/haskell/`](./clases/haskell/) se incluyen las resoluciones y reportes de corrección automática del simulacro y de la evaluación parcial.
+- **Prácticas de clase en Python:** En [`clases/python/`](./clases/python/) se encuentran los scripts trabajados en laboratorio sobre testing unitario ([`clase28_9.py`](./clases/python/clase28_9.py)), listas ([`clase7_10.py`](./clases/python/clase7_10.py)), pilas y colas ([`clase19_10.py`](./clases/python/clase19_10.py)) y diccionarios/archivos ([`claseDiccionarios.py`](./clases/python/claseDiccionarios.py)).
+
+---
+
+## Lineamientos de cátedra para evaluaciones
+
+En las evaluaciones parciales de la materia rige una restricción estricta sobre las primitivas del lenguaje que pueden utilizarse. Cualquier función, método o construcción que no se encuentre en el listado oficial de la cátedra debe ser implementada manualmente como función auxiliar; de lo contrario, el ejercicio se considera inválido.
+
+### Especificación de funciones permitidas en Haskell
+
+#### Primitivas permitidas
+
+| Categoría | Funciones y operadores |
 | :--- | :--- |
 | **División entera** | `mod :: Integral a => a -> a -> a`<br>`div :: Integral a => a -> a -> a` |
 | **Tuplas** | `fst :: (a, b) -> a`<br>`snd :: (a, b) -> b` |
 | **Listas** | `(:) :: a -> [a] -> [a]`<br>`(++) :: [a] -> [a] -> [a]`<br>`head :: [a] -> a`<br>`tail :: [a] -> [a]` |
-| **Matemáticas y conversión** | `sqrt :: Floating a => a -> a`<br>`fromIntegral :: (Integral a, Num b) => a -> b`<br>`fromInteger :: Num a => Integer -> a`<br>Aritméticas: `+`, `-`, `*`, `/` · Potencia: `**`, `^` |
-| **Lógicas y comparación** | `not :: Bool -> Bool`<br>`&&`, `||`, `==`, `/=`, `>`, `<`, `>=`, `<=` |
-| **Definiciones locales** | ✔️ Uso de cláusulas `where` |
+| **Aritmética y conversión** | `sqrt :: Floating a => a -> a`<br>`fromIntegral :: (Integral a, Num b) => a -> b`<br>`fromInteger :: Num a => Integer -> a`<br>Operadores: `+`, `-`, `*`, `/`, `**`, `^` |
+| **Lógica y comparación** | `not :: Bool -> Bool`<br>Operadores: `&&`, `||`, `==`, `/=`, `>`, `<`, `>=`, `<=` |
+| **Definiciones locales** | Cláusula `where` |
 
-#### ❌ Construcciones y funciones INVÁLIDAS en Haskell (prohibidas salvo implementación propia)
+#### Construcciones y funciones no permitidas en Haskell
 
-| Prohibición / Restricción | Alternativa obligatoria en el parcial |
+| Restricción | Criterio de resolución |
 | :--- | :--- |
-| ❌ Condicional `if ... then ... else ...` | Usar **guardas** (`\| condicion = ... \| otherwise = ...`) o ***pattern matching*** |
-| ❌ Funciones de listas del Prelude: `length`, `elem`, `notElem`, `reverse`, `init`, `last`, `take`, `drop`, `(!!)` | Implementarlas recursivamente usando `head`, `tail` y `(:)` |
-| ❌ Orden superior y plegados: `map`, `filter`, `foldr`, `foldl`, `zip`, `any`, `all` | Implementar recursión explícita |
-| ❌ Funciones numéricas/comparación: `abs`, `max`, `min`, `even`, `odd`, `gcd`, `lcm`, `sum`, `product`, `maximum`, `minimum` | Implementarlas como funciones auxiliares con guardas y `mod`/`div` |
-| ❌ Listas por comprensión (`[x \| x <- xs, ...]`) o rangos (`[1..n]`) | Construir las listas mediante funciones recursivas |
+| Expresión condicional `if ... then ... else ...` | Utilizar exclusivamente guardas (`\|`) o *pattern matching*. |
+| Funciones de listas del `Prelude` (`length`, `elem`, `reverse`, `init`, `last`, `take`, `drop`, `(!!)`) | Implementarlas de forma recursiva mediante `head`, `tail` y `(:)`. |
+| Funciones de orden superior (`map`, `filter`, `foldr`, `foldl`, `zip`, `any`, `all`) | Desarrollar la recursión explícitamente. |
+| Funciones numéricas auxiliares (`abs`, `max`, `min`, `even`, `odd`, `gcd`, `lcm`, `sum`, `maximum`, `minimum`) | Definirlas manualmente como funciones auxiliares. |
+| Listas por comprensión (`[x \| x <- xs]`) y rangos (`[1..n]`) | Generar las secuencias mediante funciones recursivas. |
 
 ---
 
-### 2. 🐍 Parcial de Python ([`validas_parcial_py.pdf`](./validas_parcial_py.pdf))
+### Especificación de funciones permitidas en Python
 
-#### ✅ Funciones, tipos y métodos permitidos
+#### Primitivas y métodos permitidos
 
-| Categoría | Elementos permitidos |
+| Categoría | Elementos habilitados |
 | :--- | :--- |
 | **Conversión de tipos** | `int`, `list`, `float`, `str`, `tuple`, `bool` |
-| **Estructuras de control** | `if` / `elif` / `else`, `while`, `for ... in range(...)`, `for ... in secuencia` |
-| **Rango** | `range(i, f, p)` *(con 1, 2 o 3 parámetros)* |
-| **Aritméticas** | `+`, `-`, `*`, `/`, `//`, `%`, `sqrt`, `round`, `floor`, `ceil` |
-| **Lógicas y comparación** | `and`, `or`, `not`, `==`, `!=`, `>`, `<`, `>=`, `<=` |
-| **Secuencias** | Pertenencia: `in` · Concatenación: `+` · Repetición: `*` · Longitud: `len(s)` · Acceso por índice positivo: `s[elem]` |
-| **Listas** | `append(e)`, `insert(p, e)`, `remove(e)`, `index(e)`, `count(e)`, `clear()`, `pop()`, `pop(n)`, `copy()` |
-| **Diccionarios** | `items()`, `keys()`, `values()`, `pop(clave)`, `clear()` |
-| **TAD Pila (`LifoQueue`)** | `from queue import LifoQueue as Pila` → `Pila()`, `put(e)`, `get()`, `empty()` |
-| **TAD Cola (`Queue`)** | `from queue import Queue as Cola` → `Cola()`, `put(e)`, `get()`, `empty()` |
-| **Archivos** | `open`, `read`, `readline`, `readlines`, `write`, `writelines`, `close`, `os.path.join()`, `os.path.exists()` |
+| **Estructuras de control** | `if`, `elif`, `else`, `while`, `for ... in range(...)`, `for ... in secuencia` |
+| **Rango** | `range(i, f, p)` (con 1, 2 o 3 argumentos) |
+| **Operaciones aritméticas** | `+`, `-`, `*`, `/`, `//`, `%`, `sqrt`, `round`, `floor`, `ceil` |
+| **Lógica y comparación** | `and`, `or`, `not`, `==`, `!=`, `>`, `<`, `>=`, `<=` |
+| **Secuencias** | Pertenencia (`in`), concatenación (`+`), repetición (`*`), longitud (`len(s)`), indexación positiva (`s[i]`) |
+| **Métodos de `list`** | `append(e)`, `insert(p, e)`, `remove(e)`, `index(e)`, `count(e)`, `clear()`, `pop()`, `pop(n)`, `copy()` |
+| **Métodos de `dict`** | `items()`, `keys()`, `values()`, `pop(clave)`, `clear()` |
+| **TAD Pila (`queue.LifoQueue`)** | `LifoQueue()`, `put(e)`, `get()`, `empty()` |
+| **TAD Cola (`queue.Queue`)** | `Queue()`, `put(e)`, `get()`, `empty()` |
+| **Manejo de archivos** | `open`, `read`, `readline`, `readlines`, `write`, `writelines`, `close`, `os.path.join()`, `os.path.exists()` |
 
-#### ❌ Construcciones y funciones INVÁLIDAS en Python (prohibidas en parcial)
+#### Construcciones y funciones no permitidas en Python
 
-| Prohibición / Restricción | Detalle y alternativa válida |
+| Restricción | Criterio de resolución |
 | :--- | :--- |
-| ❌ **Slicing de secuencias** (`s[i:f]`, `s[::-1]`, `s[:]`) | Recorrer con `for` / `while` e índices positivos `s[i]` |
-| ❌ **Índices negativos** (`s[-1]`, `s[-i]`) | Usar `s[len(s) - 1]` o `s[len(s) - i]` |
-| ❌ **Funciones built-in de agregación/orden** (`max()`, `min()`, `sum()`, `abs()`, `sorted()`, `reversed()`, `enumerate()`, `zip()`, `set()`) | Implementar función auxiliar iterativa |
-| ❌ **Métodos de listas no listados** (`.sort()`, `.reverse()`, `.extend()`) | Implementar ordenamiento/inversión manual o usar `.append()` en ciclo |
-| ❌ **Métodos de `str`** (`.split()`, `.strip()`, `.replace()`, `.lower()`, `.upper()`, `.join()`, `.find()`) | Recorrer el `str` carácter por carácter con un ciclo |
-| ❌ **Métodos de `dict` no listados** (`.get()`, `.update()`, `.setdefault()`) | Verificar pertenencia con `clave in d.keys()` y acceder con `d[clave]` |
-| ❌ **Inspección interna de Pila/Cola** (`pila.queue`, `pila.qsize()`) | Desapilar/desencolar en estructura auxiliar con `get()`/`put()` y restaurar el parámetro `in` |
-| ❌ **Comprensiones** (`[x for x in s]`, `{k: v for ...}`) y expresiones `lambda` | Inicializar estructura vacía y poblarla con ciclo `for` / `while` |
-| ⚠️ **Saltos incondicionales** (`break`, `continue`) | **No recomendados**; controlar la terminación mediante la condición lógica del `while` |
-| 📌 **Omisión de tipado estático** | **Obligatorio** anotar tipos en parámetros, retorno de funciones y variables locales |
+| *Slicing* de secuencias (`s[i:f]`, `s[::-1]`, `s[:]`) | Recorrer la secuencia mediante ciclos e indexación positiva `s[i]`. |
+| Indexación negativa (`s[-1]`, `s[-i]`) | Utilizar índices calculados a partir de la longitud: `s[len(s) - i]`. |
+| Funciones *built-in* de agregación u orden (`max`, `min`, `sum`, `abs`, `sorted`, `reversed`, `enumerate`, `zip`, `set`) | Implementar funciones auxiliares iterativas. |
+| Métodos de listas no listados (`sort()`, `reverse()`, `extend()`) | Implementar el algoritmo correspondiente o agregar elementos con `append()`. |
+| Métodos de cadenas (`split()`, `strip()`, `replace()`, `lower()`, `upper()`, `join()`, `find()`) | Procesar el `str` carácter por carácter mediante iteración. |
+| Métodos de diccionarios no listados (`get()`, `update()`, `setdefault()`) | Consultar existencia mediante `clave in d.keys()` y acceder con `d[clave]`. |
+| Acceso a atributos internos de `Queue` / `LifoQueue` (`.queue`, `.qsize()`) | Operar únicamente con `put()`, `get()` y `empty()`, utilizando una estructura auxiliar para reconstruir el parámetro de entrada. |
+| Comprensiones de listas/diccionarios y expresiones `lambda` | Instanciar la estructura vacía y poblarla mediante un ciclo `for` o `while`. |
+| Sentencias `break` y `continue` | No recomendadas por la cátedra; estructurar la condición de corte en el encabezado del ciclo `while`. |
+| Omisión de anotaciones de tipo | Todas las firmas de funciones y variables deben contar con su anotación de tipo estática. |
 
 ---
 
-## 🚀 Ejecución rápida
+## Entorno y ejecución
 
-### 🟣 Haskell (GHCi)
+### Requisitos
+
+- **GHC / GHCi** (Glasgow Haskell Compiler) para los módulos de programación funcional.
+- **Python 3.10+** para los módulos de programación imperativa (se requiere soporte para anotaciones de tipos nativas como `list[int]`, `tuple[str, int]`, `dict[str, float]`).
+
+### Ejecución de guías en Haskell
+
+Iniciar el intérprete interactivo cargando el archivo deseado desde la raíz del repositorio:
 
 ```bash
-# Cargar una guía o modelo de parcial en el intérprete interactivo
 ghci haskell/Practicas/guia5/guia5.hs
 ```
 
-Comandos útiles dentro de `ghci`:
-```haskell
-:r          -- Recargar el archivo tras guardar cambios
-:t funcion  -- Consultar la signatura de tipos de una función
-:q          -- Salir de GHCi
+Comandos habituales dentro de `GHCi`:
+
+```text
+:r            Recarga el módulo actual tras modificar el archivo.
+:t <funcion>  Muestra la signatura de tipos de una función.
+:q            Finaliza la sesión del intérprete.
 ```
 
-### 🐍 Python (Guías y Tests Unitarios)
+### Ejecución de pruebas unitarias en Python
+
+Las guías 7 y 8 cuentan con suites de pruebas automatizadas implementadas con el módulo estándar `unittest`. Para ejecutarlas desde la raíz del repositorio:
 
 ```bash
-# Ejecutar los tests de la Guía 7 (Listas y Matrices)
+# Pruebas de la Guía 7 (Listas y matrices)
 python3 -m unittest python/guias/guia7/tests_guia7.py -v
 
-# Ejecutar los tests de la Guía 8 (Pilas y Colas)
+# Pruebas de la Guía 8 (Pilas, colas y diccionarios)
 python3 -m unittest python/guias/guia8/tests_guia8.py -v
 ```
 
-### ♟️ Trabajo Práctico (Arimaa)
+---
 
-```bash
-cd tp/2c2026_tppython
+## Información académica
 
-# Ejecutar la suite de tests y medir el cubrimiento
-python3 -m unittest tests.py -v
-python3 cubrimiento.py
-```
+- **Asignatura:** Algoritmos y Estructuras de Datos I / Introducción a la Programación
+- **Departamento:** Departamento de Computación (DC)
+- **Facultad:** Facultad de Ciencias Exactas y Naturales (FCEyN)
+- **Universidad:** Universidad de Buenos Aires (UBA)

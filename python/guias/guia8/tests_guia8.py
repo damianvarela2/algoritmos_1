@@ -217,5 +217,134 @@ class TestAtencionAClientes(unittest.TestCase):
         self.assertEqual(cola_a_lista(c), entrada)
 
 
+class TestHistorial(unittest.TestCase):
+
+
+    def test_visitar_sitio(self):
+        histA: Pila[str] = lista_a_pila(["LINK1", "LINK2"])
+        histB: Pila[str] = lista_a_pila(["LINK3", "LINK4"])
+        histC: Pila[str] = lista_a_pila(["LINK5", "LINK6"])
+        histD: Pila[str] = lista_a_pila(["LINK7", "LINK8"])
+        historiales: dict[str, Pila[str]] = {
+            "a": histA, "b": histB, "c": histC, "d": histD
+        }
+        esperado: dict[str, list[str]] = {
+            "a": ["LINK1", "LINK2", "LINK10"],
+            "b": ["LINK3", "LINK4"],
+            "c": ["LINK5", "LINK6"],
+            "d": ["LINK7", "LINK8"],
+        }
+
+        visitar_sitio(historiales, "a", "LINK10")
+
+        self.assertEqual(historiales.keys(), esperado.keys())
+        for usuario, lista in esperado.items():
+            self.assertEqual(pila_a_lista(historiales[usuario]), lista)
+    def test_navegar_atras(self):
+        histA: Pila[str] = lista_a_pila(["LINK1", "LINK2"])
+        histB: Pila[str] = lista_a_pila(["LINK3", "LINK4"])
+        histC: Pila[str] = lista_a_pila(["LINK5", "LINK6"])
+        histD: Pila[str] = lista_a_pila(["LINK7", "LINK8"])
+        historiales: dict[str, Pila[str]] = {
+            "a": histA, "b": histB, "c": histC, "d": histD
+        }
+        self.assertEqual(navegar_atras(historiales,"b"),"LINK4")
+class TestAgregarProducto(unittest.TestCase):
+
+    def test_inventario_vacio_agrega_uno(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {}
+        agregar_producto(inv, "pan", 2.5, 10)
+        self.assertEqual(inv, {"pan": {"precio": 2.5, "cantidad": 10}})
+
+    def test_agrega_varios(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {}
+        agregar_producto(inv, "pan", 2.5, 10)
+        agregar_producto(inv, "leche", 4.0, 5)
+        self.assertEqual(inv, {
+            "pan": {"precio": 2.5, "cantidad": 10},
+            "leche": {"precio": 4.0, "cantidad": 5},
+        })
+
+    def test_producto_existente_se_sobrescribe(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {"pan": {"precio": 2.5, "cantidad": 10}}
+        agregar_producto(inv, "pan", 3.0, 4)
+        self.assertEqual(inv, {"pan": {"precio": 3.0, "cantidad": 4}})
+
+    def test_no_modifica_otros_productos(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {"leche": {"precio": 4.0, "cantidad": 5}}
+        agregar_producto(inv, "pan", 2.5, 10)
+        self.assertEqual(inv["leche"], {"precio": 4.0, "cantidad": 5})
+
+
+class TestActualizarStock(unittest.TestCase):
+
+    def test_actualiza_cantidad_y_mantiene_precio(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {"pan": {"precio": 2.5, "cantidad": 10}}
+        actualizar_stock(inv, "pan", 3)
+        self.assertEqual(inv, {"pan": {"precio": 2.5, "cantidad": 3}})
+
+    def test_stock_en_cero(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {"pan": {"precio": 2.5, "cantidad": 10}}
+        actualizar_stock(inv, "pan", 0)
+        self.assertEqual(inv["pan"]["cantidad"], 0)
+
+    def test_no_modifica_otros_productos(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {
+            "pan": {"precio": 2.5, "cantidad": 10},
+            "leche": {"precio": 4.0, "cantidad": 5},
+        }
+        actualizar_stock(inv, "pan", 1)
+        self.assertEqual(inv["leche"], {"precio": 4.0, "cantidad": 5})
+
+    def test_producto_inexistente_tira_keyerror(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {}
+        with self.assertRaises(KeyError):
+            actualizar_stock(inv, "pan", 3)
+
+
+class TestCalcularValorInventario(unittest.TestCase):
+
+    def test_inventario_vacio(self):
+        self.assertEqual(calcular_valor_inventario({}), 0.0)
+
+    def test_un_producto(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {"pan": {"precio": 2.5, "cantidad": 10}}
+        self.assertAlmostEqual(calcular_valor_inventario(inv), 25.0)
+
+    def test_varios_productos(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {
+            "pan": {"precio": 2.5, "cantidad": 10},
+            "leche": {"precio": 4.0, "cantidad": 5},
+        }
+        self.assertAlmostEqual(calcular_valor_inventario(inv), 45.0)
+
+    def test_producto_con_stock_cero_no_suma(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {
+            "pan": {"precio": 2.5, "cantidad": 10},
+            "sal": {"precio": 1.0, "cantidad": 0},
+        }
+        self.assertAlmostEqual(calcular_valor_inventario(inv), 25.0)
+
+    def test_precio_con_decimales(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {"x": {"precio": 0.1, "cantidad": 3}}
+        self.assertAlmostEqual(calcular_valor_inventario(inv), 0.3)
+
+    def test_no_modifica_el_inventario(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {"pan": {"precio": 2.5, "cantidad": 10}}
+        calcular_valor_inventario(inv)
+        self.assertEqual(inv, {"pan": {"precio": 2.5, "cantidad": 10}})
+
+
+class TestIntegracion(unittest.TestCase):
+
+    def test_agregar_actualizar_y_calcular(self):
+        inv: dict[str, dict[str, Union[int, float]]] = {}
+        agregar_producto(inv, "pan", 2.5, 10)
+        agregar_producto(inv, "leche", 4.0, 5)
+        actualizar_stock(inv, "pan", 2)
+        self.assertAlmostEqual(calcular_valor_inventario(inv), 25.0)
+
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)
