@@ -84,7 +84,7 @@ Resoluciones y suites de pruebas disponibles en [`python/guias/`](./python/guias
 | :--- | :--- | :--- | :--- | :---: |
 | **Guía 6** | [`guia6.py`](./python/guias/guia6/guia6.py) | — | Funciones, tipado estático, condicionales y ciclos `while` / `for` | `Completada` |
 | **Guía 7** | [`guia7.py`](./python/guias/guia7/guia7.py) | [`tests_guia7.py`](./python/guias/guia7/tests_guia7.py) | Listas, matrices, mutabilidad, aliasing y pasaje `in` / `out` / `inout` | `Completada` |
-| **Guía 8** | [`guia8.py`](./python/guias/guia8/guia8.py) | [`tests_guia8.py`](./python/guias/guia8/tests_guia8.py) | TAD Pila (`LifoQueue`), TAD Cola (`Queue`), diccionarios y archivos | `En curso` |
+| **Guía 8** | [`guia8.py`](./python/guias/guia8/guia8.py) | [`tests_guia8.py`](./python/guias/guia8/tests_guia8.py) | TAD Pila (`LifoQueue`), TAD Cola (`Queue`), diccionarios y archivos | `Completada` |
 
 ---
 

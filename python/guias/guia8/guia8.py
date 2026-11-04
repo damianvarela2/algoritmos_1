@@ -321,3 +321,223 @@ def calcular_valor_inventario(inventario:dict[str,dict[str,Union[int,float]]])->
     for nombre in inventario.keys():
         valor=valor+inventario[nombre]["precio"]*inventario[nombre]["cantidad"]
     return valor
+
+#Archivos
+def contar_lineas(nombre_archivo:str)->int:
+    archivo = open(nombre_archivo, 'r')
+    lista:list[str]=archivo.readlines()
+    archivo.close()
+    return(len(lista))
+
+def exista_palabra(nombre_archivo:str,palabra:str)->bool:
+    lista_palabras:list[str]=[]
+    pal:str=""
+    archivo = open(nombre_archivo, 'r')
+    lineas=archivo.readlines()
+    for linea in lineas:
+        for caracter in linea:
+            if caracter != " " and caracter!="\n":
+                pal=pal+caracter
+            elif pal != "":
+                lista_palabras.append(pal)
+                pal=""
+        if pal != "":
+            lista_palabras.append(pal)
+            pal=""
+
+    archivo.close()
+    return(palabra in lista_palabras)
+
+def cantidad_de_apariciones(nombre_archivo:str,palabra:str)->int:
+    archivo = open(nombre_archivo, 'r')
+    lista_palabras:list[str]=lista_de_palabras(archivo.readlines())
+    archivo.close()
+    return(lista_palabras.count(palabra))
+
+
+def lista_de_palabras(lineas:list[str])->list[str]:
+    pal:str=""
+    res:list[str]=[]
+    for linea in lineas:
+        for caracter in linea:
+            if caracter!=" " and caracter != "\n":
+                pal=pal+caracter
+            elif(pal!=""):
+                res.append(pal)
+                pal=""
+        if(pal!=""):
+            res.append(pal)
+            pal=""
+    return res
+
+#Ejercicio 20
+def agrupar_por_longitud(nombre_archivo:str)->dict[int,int]:
+    res:dict[int,int]={}
+    contador_actual:int
+    archivo=open(nombre_archivo,'r')
+    lineas:list[str]=archivo.readlines()
+    archivo.close()
+    lista_palabras:list[str]=lista_de_palabras(lineas)
+    for palabra in lista_palabras:
+        if len(palabra) not in res.keys():
+            res[len(palabra)]=1
+        else:
+            contador_actual=res[len(palabra)]
+            res[len(palabra)]=contador_actual+1
+    return res
+
+def la_palabra_mas_frecuente(nombre_archivo:str)->str:
+    palabra_actual:str=""
+    contador_palabra_actual:int=0
+    archivo=open(nombre_archivo,'r')
+    lista_lineas:list[str]=archivo.readlines()
+    archivo.close()
+    lista_palabras:list[str]=lista_de_palabras(lista_lineas)
+    for palabra in lista_palabras:
+        n:int=lista_palabras.count(palabra)
+        if n>contador_palabra_actual:
+            palabra_actual=palabra
+            contador_palabra_actual=n
+    return palabra_actual
+
+# def la_palabra_mas_frecuente(nombre_archivo: str) -> str:
+#     archivo = open(nombre_archivo, 'r')
+#     lista_lineas: list[str] = archivo.readlines()
+#     archivo.close()
+
+#     lista_palabras: list[str] = lista_de_palabras(lista_lineas)
+
+#     frecuencias: dict[str, int] = {}
+
+#     for palabra in lista_palabras:
+#         if palabra in frecuencias:
+#             frecuencias[palabra] += 1
+#         else:
+#             frecuencias[palabra] = 1
+
+#     palabra_actual: str = ""
+#     contador_palabra_actual: int = 0
+
+#     for palabra in frecuencias:
+#         if frecuencias[palabra] > contador_palabra_actual:
+#             palabra_actual = palabra
+#             contador_palabra_actual = frecuencias[palabra]
+
+#     return palabra_actual
+
+def clonar_sin_comentarios(nombre_archivo_entrada:str,nombre_archivo_salida:str)->None:
+    archivo=open(nombre_archivo_entrada,'r')
+    lista_lineas:list[str]=archivo.readlines()
+    archivo.close()
+    lista_sin_comentarios:list[str]=[]
+    for linea in lista_lineas:
+        if not es_comentario(linea):
+            lista_sin_comentarios.append(linea)
+    archivo=open(nombre_archivo_salida,'w')
+    for linea in lista_sin_comentarios:
+        archivo.write(linea)
+    archivo.close()
+
+def es_comentario(linea:str)->bool:
+    contador:int=0
+    caracter:str=linea[contador]
+    while caracter==" " and contador<len(linea):
+        contador+=1
+        caracter=linea[contador]
+    return(contador<len(linea) and caracter=="#")
+
+#Ejercicio 23
+def invertir_lineas(nombre_archivo_entrada:str,nombre_archivo_salida:str)->None:
+    archivo=open(nombre_archivo_entrada,'r')
+    lista_lineas:list[str]=archivo.readlines()
+    archivo.close()
+    lista:list[str]=invertir_lista(lista_lineas)
+    archivo=open(nombre_archivo_salida,'w')
+    for linea in lista:
+        archivo.write(linea)
+    archivo.close()
+
+def invertir_lista(lista:list[str])->list[str]:
+    res:list[str]=[]
+    for elemento in lista:
+        res=elemento+res
+    return res
+
+#Ejercicio 24
+def agregar_frase_al_final(nombre_archivo:str,frase:str)->None:
+    archivo = open(nombre_archivo, 'r')
+    contenido: str = archivo.read()
+    archivo.close()
+    archivo = open(nombre_archivo, 'w')
+    archivo.write(contenido + "\n" + frase)
+    archivo.close()
+
+#Ejercicio 25
+def agregar_frase_al_principio(nombre_archivo: str, frase: str) -> None:
+    archivo = open(nombre_archivo, 'r')
+    contenido: str = archivo.read()
+    archivo.close()
+    archivo = open(nombre_archivo, 'w')
+    archivo.write(frase + "\n" + contenido)
+    archivo.close()
+
+#Ejercicio 26
+def listar_textos_de_archivo(nombre_archivo: str) -> list[str]:
+    archivo = open(nombre_archivo, 'rb')
+    contenido: bytes = archivo.read()
+    archivo.close()
+
+    res: list[str] = []
+    actual: str = ""
+    for byte in contenido:
+        c: str = chr(byte)
+        if es_legible(c):
+            actual = actual + c
+        else:
+            if len(actual) >= 5:
+                res.append(actual)
+            actual = ""
+    if len(actual) >= 5:
+        res.append(actual)
+    return res
+
+def es_legible(c:str)->bool:
+    return (('a' <= c <= 'z') or ('A' <= c <= 'Z') or ('0' <= c <= '9') or c == ' ' or c == '_')
+
+#Ejercicio 27
+def calcular_promedio_por_estudiante(nombre_archivo_notas:str,nombre_archivo_promedio:str)->None:
+    archivo=open(nombre_archivo_notas,'r')
+    lineas:list[str]=archivo.readlines()
+    archivo.close()
+    archivo=open(nombre_archivo_promedio,'w')
+    for lu in lista_de_lu(lineas):
+        archivo.write(lu + ","+ promedio_estudiante(lineas,lu))
+    archivo.close()
+
+def lista_de_lu(notas_de_estudiantes:list[str])->list[str]:
+    res:list[str]=[]
+    for linea in notas_de_estudiantes:
+        lu:str=separar_por_coma(linea)[0]
+        if lu not in res and lu!="":
+            res.append(lu)
+    return res
+
+def promedio_estudiante(notas_de_estudiantes:list[str],lu:str)->float:
+    notas:list[float]=[]
+    for linea in notas_de_estudiantes:
+        info:list[str]=separar_por_coma(linea)
+        if info[0]==lu:
+            notas.append(float(info[3]))
+    return(sum(notas)/len(notas))
+
+def separar_por_coma(linea:str)->list[str]:
+    res:list[str]=[]
+    agrego:str=""
+    for caracter in linea:
+        if caracter==",":
+            res.append(agrego)
+            agrego = ""
+        elif caracter!="\n":
+            agrego=agrego+caracter
+    res.append(agrego)
+    return res
